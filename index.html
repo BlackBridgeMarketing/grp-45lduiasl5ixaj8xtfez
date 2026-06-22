@@ -48,7 +48,7 @@ body{background:#08080a;color:#f0f0f2;font-family:'Inter',-apple-system,BlinkMac
 .set-row{display:flex;align-items:center;gap:8px;padding:8px 16px;border-bottom:1px solid #0e0e10}
 .set-num{font-size:11px;font-weight:700;color:#333;width:32px;flex-shrink:0}
 .set-num.done{color:#3a7a3a}
-.inp{background:#0a0a0c;border:1px solid #1e1e22;color:#f0f0f2;padding:7px 10px;border-radius:4px;font-size:13px;font-family:inherit;width:100%;outline:none;text-align:center}
+.inp{background:#0a0a0c;border:1px solid #1e1e22;color:#f0f0f2;padding:7px 8px;border-radius:4px;font-size:16px;font-family:inherit;width:100%;min-width:0;outline:none;text-align:center;-webkit-appearance:none;appearance:none}
 .inp.filled{border-color:#2a4a2a}
 .inp.pr{border-color:#8b6914}
 .inp-label{font-size:9px;color:#444;text-align:center;margin-top:2px;letter-spacing:1px;text-transform:uppercase}
@@ -109,6 +109,19 @@ body{background:#08080a;color:#f0f0f2;font-family:'Inter',-apple-system,BlinkMac
 .timer-float .close{background:none;border:none;color:#555;font-size:18px;cursor:pointer;padding:4px}
 .view{display:none}.view.active{display:block}
 .hidden{display:none}
+.wc-card{margin:10px 16px 0;border:1px solid #1a1a1e;border-radius:8px;overflow:hidden;background:#0c0c0e}
+.wc-hdr{padding:11px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:10px}
+.wc-tag{font-size:9px;font-weight:700;letter-spacing:1.5px;color:#6a8c6a;background:#152015;padding:3px 7px;border-radius:3px;display:inline-block;margin-right:9px;vertical-align:middle}
+.wc-card.cool .wc-tag{color:#8c7a6a;background:#1f1812}
+.wc-title{font-size:11px;font-weight:600;color:#999;letter-spacing:0.5px;vertical-align:middle}
+.wc-body{padding:4px 14px 12px;border-top:1px solid #1a1a1e}
+.wc-item{display:flex;gap:10px;padding:9px 0;align-items:flex-start;border-bottom:1px solid #131316}
+.wc-item:last-child{border-bottom:none}
+.wc-n{width:20px;height:20px;border-radius:50%;background:#1a1a1e;color:#999;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.wc-c{flex:1;min-width:0}
+.wc-name{font-size:12.5px;font-weight:600;color:#f0f0f2}
+.wc-d{font-size:10px;color:#666;font-weight:500;letter-spacing:0.5px;margin-left:4px}
+.wc-cue{font-size:11px;color:#888;margin-top:3px;line-height:1.45}
 </style>
 </head>
 <body>
@@ -129,7 +142,7 @@ body{background:#08080a;color:#f0f0f2;font-family:'Inter',-apple-system,BlinkMac
 <div id="modal" class="modal hidden"></div>
 <div class="saved" id="saved">✓ Saved</div>
 <div class="timer-float" id="timer-float">
-  <div style="flex:1">
+  <div style="flex:1;min-width:0">
     <div class="name" id="timer-name"></div>
     <div class="time" id="timer-time"></div>
     <div class="bar"><div class="fill" id="timer-fill"></div></div>
@@ -149,7 +162,7 @@ days:[
 {name:"Flat Barbell Bench",sets:4,reps:"6–8",muscles:"Mid Chest · Triceps",tempo:"3-1-2-0",rest:"2 min",cues:["Grip just outside shoulder width. Retract shoulder blades.","Unrack and position bar over mid-chest.","Lower to chest with elbows at ~45°. Touch lightly.","Press up explosively. Lock out without flaring elbows."]},
 {name:"Low-to-High Cable Flye",sets:3,reps:"12–15",muscles:"Upper Chest · Inner Chest",tempo:"2-1-2-1",rest:"60s",cues:["Set cables at lowest position. Step forward into split stance.","With slight bend in elbows, sweep arms upward in hugging arc.","Hands meet at upper-chest height. Squeeze hard at top.","Return slowly along the same arc. Feel the stretch at bottom."]},
 {name:"Dips",sets:3,reps:"8–12",muscles:"Lower Chest · Triceps",tempo:"3-1-2-0",rest:"90s",cues:["Grip parallel bars. Lean torso forward ~30° for chest focus.","Lower until upper arms are roughly parallel to floor.","Press back up by driving through palms. Don't lock aggressively.","If bodyweight is easy, add a belt or hold a dumbbell between feet."]},
-{name:"Overhead Tricep Extension",sets:3,reps:"10–12",muscles:"Triceps (Long Head)",tempo:"3-1-2-0",rest:"60s",cues:["Sit or stand. Hold dumbbell or rope overhead with arms extended.","Lower behind head by bending elbows — keep upper arms still.","Feel deep stretch in long head at bottom.","Extend back up. Squeeze triceps at top."]},
+{name:"Lying DB Skull Crushers",sets:3,reps:"10–12",muscles:"Triceps (Long Head)",tempo:"3-1-2-0",rest:"60s",cues:["Lie flat on bench. Hold dumbbells extended above chest, palms facing each other (neutral grip).","Hinge ONLY at elbows — lower DBs toward forehead/temples. Upper arms stay vertical.","Feel deep stretch in long head at bottom. Don't flare elbows out wide.","Extend back up by squeezing triceps hard. Lock out smoothly — don't slam at top."]},
 {name:"Tricep Pushdowns",sets:3,reps:"12–15",muscles:"Triceps (Lateral Head)",tempo:"2-1-2-1",rest:"60s",cues:["Face cable machine. Grip rope or bar at chest height.","Pin elbows to sides — they don't move.","Push down until arms fully extend. Spread rope at bottom if using rope.","Return slowly to start. Don't let the weight stack slam."]}
 ]},
 {id:"tue",label:"TUE",title:"Back + Biceps",exercises:[
@@ -166,7 +179,7 @@ days:[
 {name:"Rear Delt Cable Flye",sets:3,reps:"12–15",muscles:"Rear Delts",tempo:"2-1-2-1",rest:"60s",cues:["Set cables at face height. Cross cables — grab left with right hand.","Step back. Pull apart with straight arms in a wide arc.","Squeeze rear delts hard — hold 1 second.","Return slowly to start. Control the negative."]},
 {name:"Cable Face Pulls",sets:3,reps:"15–20",muscles:"Rear Delts · Rotator Cuff",tempo:"2-1-2-1",rest:"60s",cues:["Set rope attachment at upper-chest height.","Pull rope toward face — hands finish beside ears.","Externally rotate so fists point to ceiling at end. Hold 1 count.","Return slowly. Keep elbows high throughout."]},
 {name:"EZ Curl + Close-Grip Pushup",sets:3,reps:"10–12 ea",muscles:"Biceps · Triceps",tag:"SUPERSET",tempo:"2-1-2-0",rest:"75s",parts:["EZ Curl","Close-Grip Pushup"],partsBw:[false,true],cues:["EZ Curl: Grip EZ bar on inner cambers. Curl up, squeeze, lower slowly.","Immediately drop to pushup position — hands inside shoulder width.","Pushup: Lower chest to hands, press up. Elbows stay tight to body.","That's one round. Rest after completing both movements."]},
-{name:"Cross-Body Hammer + OH Tri Ext",sets:3,reps:"10–12 ea",muscles:"Biceps · Triceps",tag:"SUPERSET",tempo:"2-1-2-0",rest:"75s",parts:["Cross-Body Hammer","OH Tricep Ext"],partsBw:[false,false],cues:["Cross-Body Hammer: Curl dumbbell across body toward opposite shoulder.","Squeeze at top, lower slowly. Alternate arms.","OH Tricep Ext: Single dumbbell overhead, lower behind head.","Extend back up. Rest after completing both movements."]}
+{name:"Cross-Body Hammer + Skull Crushers",sets:3,reps:"10–12 ea",muscles:"Biceps · Triceps",tag:"SUPERSET",tempo:"2-1-2-0",rest:"75s",parts:["Cross-Body Hammer","Skull Crushers"],partsBw:[false,false],cues:["Cross-Body Hammer: Curl dumbbell across body toward opposite shoulder.","Squeeze at top, lower slowly. Alternate arms.","Skull Crushers: Lie on bench, DBs extended over chest. Lower toward forehead with elbows fixed.","Extend back up by squeezing triceps. Rest after completing both movements."]}
 ]},
 {id:"thu",label:"THU",title:"Lower Body + Core",exercises:[
 {name:"Trap Bar Deadlift",sets:4,reps:"6–8",muscles:"Glutes · Hamstrings · Back",tempo:"2-1-2-1",rest:"2 min",cues:["Step inside trap bar. Feet hip-width.","Hinge and grip handles. Chest up, back flat, hips loaded.","Drive through feet to stand. Lockout with glutes, don't hyperextend.","Lower by hinging at hips first, then bend knees. Pause at floor."]},
@@ -182,13 +195,82 @@ days:[
 {name:"Incline DB Press (Pump)",sets:3,reps:"12–15",muscles:"Upper Chest",tempo:"2-1-2-0",rest:"60s",cues:["Light weight — this is for pump, not max load.","Bench at 30°. Full range of motion, constant tension.","Don't lock out at top — keep chest under tension.","Squeeze and feel the upper chest working every rep."]},
 {name:"Reverse Pec Deck",sets:3,reps:"15–20",muscles:"Rear Delts",tempo:"2-1-2-1",rest:"60s",cues:["Sit facing the pad. Grip handles with neutral or pronated grip.","Open arms in reverse fly motion — lead with elbows.","Squeeze rear delts at full contraction. Hold 1 second.","Return slowly. Don't let the weight slam between reps."]},
 {name:"Lateral Raise 21s",sets:3,reps:"7/7/7",muscles:"Side Delts",tempo:"Continuous",rest:"90s",cues:["7 reps bottom-half (waist to midway).","7 reps top-half (midway to shoulder height).","7 reps full range.","No rest between segments. This will burn — embrace it."]},
-{name:"Serratus Punch + Ab Rollout",sets:3,reps:"12 each",muscles:"Serratus · Core",tag:"SUPERSET",tempo:"2-1-2-0",rest:"75s",parts:["Serratus Punch","Ab Rollout"],partsBw:[false,true],cues:["Serratus Punch: Lie flat, press dumbbell to ceiling, then punch higher by protracting shoulder blade.","Focus on that extra 2–3 inches of push at the top.","Ab Rollout: Kneel with ab wheel. Roll out keeping core tight.","Only go as far as you can control. Pull back with abs, not arms."]}
+{name:"Scapular Pushups + Ab Rollout",sets:3,reps:"12 each",muscles:"Serratus · Core",tag:"SUPERSET",tempo:"2-1-2-0",rest:"75s",parts:["Scapular Pushups","Ab Rollout"],partsBw:[true,true],cues:["Scapular Pushups: Start in high plank, arms straight and locked — DO NOT bend the elbows.","Let chest sink between shoulder blades, then 'punch' the floor away by spreading shoulder blades apart.","Ab Rollout: Kneel with ab wheel. Roll out keeping core tight, hips don't sag.","Only roll as far as you can control. Pull back with abs, not arms."]}
 ]}
 ]};
 
+const WARMUPS={
+  mon:{title:"Warm-Up · 5–7 min",items:[
+    {n:"Arm Circles",d:"30s each direction",c:"Big slow circles forward, then back. Open up shoulders and chest."},
+    {n:"Band Pull-Aparts",d:"15 reps",c:"Light band, arms straight at chest height. Pull apart, squeeze upper back."},
+    {n:"Shoulder Dislocates",d:"10 reps",c:"PVC or band overhead with wide grip. Pass over and behind head. Slow and controlled."},
+    {n:"Push-Up to Downward Dog",d:"8 reps",c:"From push-up, drive hips up to inverted-V. Stretch shoulders and hamstrings."},
+    {n:"Light Bench Warm-Up",d:"1 × 15",c:"Empty bar or very light DBs. Full ROM. Wake up the working muscles."}
+  ]},
+  tue:{title:"Warm-Up · 5–7 min",items:[
+    {n:"Cat-Cow",d:"8 reps",c:"Slow spinal flexion and extension. Sync with breath."},
+    {n:"Dead Hang",d:"30s",c:"Hang from pull-up bar. Decompresses spine, warms grip and lats."},
+    {n:"Band Pull-Aparts",d:"15 reps",c:"Rear delt and rhomboid activation before pulling work."},
+    {n:"Thoracic Rotations",d:"8 each side",c:"Quadruped. Hand behind head, rotate elbow up toward ceiling."},
+    {n:"Light Lat Pulldown",d:"1 × 15",c:"Very light load. Focus on lat engagement, not pulling weight."}
+  ]},
+  wed:{title:"Warm-Up · 5–7 min",items:[
+    {n:"Arm Circles",d:"30s each direction",c:"Open shoulders. Start small, get bigger."},
+    {n:"Band Pull-Aparts",d:"15 reps",c:"Rear delt activation. Crucial before pressing."},
+    {n:"Band External Rotations",d:"12 each arm",c:"Elbow pinned to side, rotate forearm out. Rotator cuff warm-up."},
+    {n:"Shoulder Dislocates",d:"10 reps",c:"PVC or band overhead and behind. Wide grip, slow."},
+    {n:"Wall Slides",d:"10 reps",c:"Back to wall, arms in W shape. Slide up to Y while keeping contact."}
+  ]},
+  thu:{title:"Warm-Up · 5–7 min · Knee-Safe",items:[
+    {n:"Hip Circles",d:"30s each direction",c:"Hands on hips, big slow circles. Loosen hip joints."},
+    {n:"Glute Bridges",d:"15 reps",c:"Activate glutes BEFORE hinging. Critical for hip thrust and deadlift."},
+    {n:"World's Greatest Stretch (modified)",d:"5 each side",c:"From plank, step foot forward gently. NO deep lunge. Reach opposite arm up."},
+    {n:"90/90 Hip Switches",d:"8 each side",c:"Seated, both knees bent at 90°. Switch sides without using hands."},
+    {n:"Bird Dogs",d:"10 each side",c:"Quadruped. Opposite arm and leg extend. Core braced, no hip rotation."}
+  ]},
+  sat:{title:"Warm-Up · 5–7 min",items:[
+    {n:"Arm Circles",d:"30s each direction",c:"Open shoulders and warm the upper back."},
+    {n:"Band Pull-Aparts",d:"15 reps",c:"Rear delts and rhomboids — wake up the back."},
+    {n:"Dead Hang",d:"30s",c:"Lat decompression. Shift weight side to side."},
+    {n:"Cat-Cow",d:"8 reps",c:"Spinal mobility, sync with breath."},
+    {n:"Light Lat Pulldown",d:"1 × 15",c:"Very light. Activation only."}
+  ]}
+};
+const COOLDOWNS={
+  mon:{title:"Cool-Down · 5–7 min",items:[
+    {n:"Doorway Chest Stretch",d:"30s each side",c:"Arm bent at 90°, forearm flat on doorframe. Step through. Deep chest stretch."},
+    {n:"Tricep Overhead Stretch",d:"30s each arm",c:"Reach hand behind head, opposite hand pulls elbow gently."},
+    {n:"Cross-Body Shoulder Stretch",d:"30s each",c:"Arm across chest, opposite hand pulls toward body."},
+    {n:"Cat-Cow",d:"8 slow reps",c:"Decompress spine. Sync with breath."}
+  ]},
+  tue:{title:"Cool-Down · 5–7 min",items:[
+    {n:"Lat Dead Hang",d:"30s",c:"Hang from bar. Let lats lengthen. Optional: shift side to side."},
+    {n:"Doorway Lat Stretch",d:"30s each side",c:"Grip frame at head height. Sit hips back. Stretch one lat at a time."},
+    {n:"Bicep Wall Stretch",d:"30s each arm",c:"Arm flat against wall, palm flush. Rotate body away from wall slowly."},
+    {n:"Child's Pose",d:"60s",c:"Reach arms forward, sink hips back to heels. Breathe."}
+  ]},
+  wed:{title:"Cool-Down · 5–7 min",items:[
+    {n:"Cross-Body Shoulder Stretch",d:"30s each",c:"Arm across chest, opposite hand pulls toward body."},
+    {n:"Sleeper Stretch",d:"30s each arm",c:"Side-lying. Arm at 90°, opposite hand presses forearm down gently. Internal rotation."},
+    {n:"Bicep Wall Stretch",d:"30s each arm",c:"Arm flat against wall, palm flush. Rotate body away."},
+    {n:"Tricep Overhead Stretch",d:"30s each arm",c:"Reach hand behind head, opposite hand pulls elbow gently."}
+  ]},
+  thu:{title:"Cool-Down · 5–7 min",items:[
+    {n:"Standing Forward Fold",d:"60s",c:"Slight knee bend. Let head hang. Hamstring and lower back stretch."},
+    {n:"Pigeon Pose",d:"60s each side",c:"Front shin angled across mat, back leg extended. Deep glute stretch."},
+    {n:"Supine Hip Flexor Stretch",d:"30s each side",c:"Lie on back. Pull one knee to chest, other leg flat. Switch."},
+    {n:"Child's Pose",d:"60s",c:"Reach arms forward, hips back to heels. Final reset."}
+  ]},
+  sat:{title:"Cool-Down · 5–7 min",items:[
+    {n:"Lat Hang Stretch",d:"30s each side",c:"Hang from bar, shift weight to one side. Stretch the loaded-side lat."},
+    {n:"Cross-Body Shoulder Stretch",d:"30s each",c:"Arm across chest, pull toward body."},
+    {n:"Doorway Chest Stretch",d:"30s each side",c:"Forearm on doorframe at 90°. Step through gently."},
+    {n:"Child's Pose",d:"60s",c:"Sink hips back. Breathe. End of session."}
+  ]}
+};
 const DAY_DOW={mon:1,tue:2,wed:3,thu:4,sat:6};
 const MAX_PHOTOS=16;
-let state={view:"workout",day:"mon",date:today(),logs:{},photos:[],expanded:{},guides:{},timer:null,timerInterval:null};
+let state={view:"workout",day:"mon",date:today(),logs:{},photos:[],expanded:{},guides:{},timer:null,timerTimeout:null};
 
 function today(){return new Date().toISOString().split("T")[0]}
 function getMostRecent(dayId){const t=DAY_DOW[dayId],d=new Date(),dow=d.getDay();let diff=dow-t;if(diff<0)diff+=7;d.setDate(d.getDate()-diff);return d.toISOString().split("T")[0]}
@@ -231,34 +313,46 @@ function autoFill(){
   save();render()
 }
 
-// Timer
+// Timer — timestamp-based so it survives phone screen lock / app backgrounding
+function saveTimer(){if(state.timer)localStorage.setItem("grp-timer",JSON.stringify(state.timer));else localStorage.removeItem("grp-timer")}
+function loadTimer(){try{const t=localStorage.getItem("grp-timer");if(t){state.timer=JSON.parse(t);if(timerRemaining()<=-60){state.timer=null;localStorage.removeItem("grp-timer")}else{scheduleTick()}}}catch(e){}}
+function timerRemaining(){if(!state.timer)return 0;return state.timer.total-(Date.now()-state.timer.startTime)/1000}
 function startTimer(name,rest){
-  clearInterval(state.timerInterval);
-  const secs=parseRest(rest);state.timer={seconds:secs,total:secs,name};
-  renderTimer();
-  state.timerInterval=setInterval(()=>{
-    if(state.timer.seconds>0){state.timer.seconds--;renderTimer()}
-    else clearInterval(state.timerInterval)
-  },1000)
+  clearTimeout(state.timerTimeout);
+  const secs=parseRest(rest);
+  state.timer={name,total:secs,startTime:Date.now()};
+  saveTimer();
+  scheduleTick();
+  renderTimer()
 }
-function cancelTimer(){clearInterval(state.timerInterval);state.timer=null;renderTimer()}
-
+function cancelTimer(){clearTimeout(state.timerTimeout);state.timer=null;saveTimer();renderTimer()}
 function startTimerByIdx(idx){const ex=PROGRAM.days.find(d=>d.id===state.day).exercises[idx];startTimer(ex.name,ex.rest)}
+function scheduleTick(){
+  clearTimeout(state.timerTimeout);
+  if(!state.timer)return;
+  const rem=timerRemaining();
+  if(rem<=-1)return; // stop scheduling once well past zero
+  // Align to next whole-second boundary
+  const ms=((rem%1)*1000)||1000;
+  state.timerTimeout=setTimeout(()=>{renderTimer();scheduleTick()},Math.max(50,ms))
+}
 function renderTimer(){
   const el=document.getElementById("timer-float");
   if(!state.timer){el.classList.remove("active");return}
   el.classList.add("active");
-  const t=state.timer;const done=t.seconds===0;
+  const rem=timerRemaining();const done=rem<=0;const display=Math.max(0,Math.ceil(rem));
   el.style.background=done?"#1a2a1a":"#141416";
   el.style.border="1px solid "+(done?"#2a4a2a":"#2a2a30");
-  document.getElementById("timer-name").textContent=t.name;
+  document.getElementById("timer-name").textContent=state.timer.name;
   const timeEl=document.getElementById("timer-time");
-  timeEl.textContent=done?"GO!":`${Math.floor(t.seconds/60)}:${(t.seconds%60).toString().padStart(2,"0")}`;
+  timeEl.textContent=done?"GO!":`${Math.floor(display/60)}:${(display%60).toString().padStart(2,"0")}`;
   timeEl.style.color=done?"#5cb85c":"#f0f0f2";
   const fill=document.getElementById("timer-fill");
-  fill.style.width=`${((t.total-t.seconds)/t.total)*100}%`;
+  fill.style.width=`${Math.min(100,((state.timer.total-rem)/state.timer.total)*100)}%`;
   fill.style.background=done?"#5cb85c":"#f0f0f2"
 }
+// Recompute immediately when the tab/screen becomes visible again
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&state.timer){renderTimer();scheduleTick()}});
 
 // Photo upload
 function handlePhoto(input){
@@ -331,6 +425,23 @@ function renderNav(){
 }
 function setView(v){state.view=v;render()}
 
+function renderWC(type,data){
+  if(!data)return"";
+  const id=type+"-"+state.day;
+  const open=state.expanded[id];
+  const label=type==="warmup"?"WARM-UP":"COOL-DOWN";
+  const cls=type==="cooldown"?" cool":"";
+  let h=`<div class="wc-card${cls}"><div class="wc-hdr" onclick="toggle('${id}')"><div><span class="wc-tag">${label}</span><span class="wc-title">${data.title}</span></div><span class="chev ${open?"open":""}">▾</span></div>`;
+  if(open){
+    h+=`<div class="wc-body">`;
+    data.items.forEach((it,i)=>{
+      h+=`<div class="wc-item"><div class="wc-n">${i+1}</div><div class="wc-c"><div class="wc-name">${it.n}<span class="wc-d">· ${it.d}</span></div><div class="wc-cue">${it.c}</div></div></div>`;
+    });
+    h+=`</div>`;
+  }
+  h+=`</div>`;
+  return h;
+}
 function renderWorkout(){
   const day=PROGRAM.days.find(d=>d.id===state.day);const k=logKey();const log=state.logs[k];
   const last=getLastSession(state.day);
@@ -342,6 +453,8 @@ function renderWorkout(){
   h+=`</div><div class="day-title">${day.title}</div>`;
   h+=`<div class="date-row"><input type="date" value="${state.date}" onchange="setDate(this.value)"><span>${new Date(state.date+"T12:00").toLocaleDateString("en-US",{weekday:"long"})}</span></div>`;
   if(last)h+=`<div class="autofill"><button onclick="autoFill()">↻ Load Last Session's Weights</button></div>`;
+
+  h+=renderWC("warmup",WARMUPS[state.day]);
 
   day.exercises.forEach((ex,exIdx)=>{
     const id=state.day+"-"+exIdx;const open=state.expanded[id];const gOpen=state.guides[id];
@@ -361,26 +474,28 @@ function renderWorkout(){
           h+=`<div style="border-bottom:1px solid #0e0e10">`;
           h+=`<div class="ss-label"><span class="${filled2?"done":""}" style="font-size:11px;font-weight:700;color:${filled2?"#3a7a3a":"#333"};width:32px">${si+1}</span><span>${ex.parts[0]}</span></div>`;
           h+=`<div class="ss-inputs">`;
-          if(aBw){h+=`<span class="bw-badge">BW</span><span class="x">×</span><div style="flex:1"><input class="inp ${aD.reps?"filled":""}" type="number" inputmode="numeric" placeholder="—" value="${aD.reps||""}" oninput="updateSet(${exIdx},${si},'reps',this.value,'a')"><div class="inp-label">REPS</div></div>`}
-          else{h+=`<div style="flex:1"><input class="inp ${aD.weight?"filled":""}" type="number" inputmode="decimal" placeholder="—" value="${aD.weight||""}" oninput="updateSet(${exIdx},${si},'weight',this.value,'a')"><div class="inp-label">LBS</div></div><span class="x">×</span><div style="flex:1"><input class="inp ${aD.reps?"filled":""}" type="number" inputmode="numeric" placeholder="—" value="${aD.reps||""}" oninput="updateSet(${exIdx},${si},'reps',this.value,'a')"><div class="inp-label">REPS</div></div>`}
+          if(aBw){h+=`<span class="bw-badge">BW</span><span class="x">×</span><div style="flex:1;min-width:0"><input class="inp ${aD.reps?"filled":""}" type="number" inputmode="numeric" placeholder="—" value="${aD.reps||""}" oninput="updateSet(${exIdx},${si},'reps',this.value,'a')"><div class="inp-label">REPS</div></div>`}
+          else{h+=`<div style="flex:1;min-width:0"><input class="inp ${aD.weight?"filled":""}" type="number" inputmode="decimal" placeholder="—" value="${aD.weight||""}" oninput="updateSet(${exIdx},${si},'weight',this.value,'a')"><div class="inp-label">LBS</div></div><span class="x">×</span><div style="flex:1;min-width:0"><input class="inp ${aD.reps?"filled":""}" type="number" inputmode="numeric" placeholder="—" value="${aD.reps||""}" oninput="updateSet(${exIdx},${si},'reps',this.value,'a')"><div class="inp-label">REPS</div></div>`}
           h+=`</div>`;
           h+=`<div class="ss-part-label"><span>${ex.parts[1]}</span></div>`;
           h+=`<div class="ss-inputs-b">`;
-          if(bBw){h+=`<span class="bw-badge">BW</span><span class="x">×</span><div style="flex:1"><input class="inp ${bD.reps?"filled":""}" type="number" inputmode="numeric" placeholder="—" value="${bD.reps||""}" oninput="updateSet(${exIdx},${si},'reps',this.value,'b')"><div class="inp-label">REPS</div></div>`}
-          else{h+=`<div style="flex:1"><input class="inp ${bD.weight?"filled":""}" type="number" inputmode="decimal" placeholder="—" value="${bD.weight||""}" oninput="updateSet(${exIdx},${si},'weight',this.value,'b')"><div class="inp-label">LBS</div></div><span class="x">×</span><div style="flex:1"><input class="inp ${bD.reps?"filled":""}" type="number" inputmode="numeric" placeholder="—" value="${bD.reps||""}" oninput="updateSet(${exIdx},${si},'reps',this.value,'b')"><div class="inp-label">REPS</div></div>`}
+          if(bBw){h+=`<span class="bw-badge">BW</span><span class="x">×</span><div style="flex:1;min-width:0"><input class="inp ${bD.reps?"filled":""}" type="number" inputmode="numeric" placeholder="—" value="${bD.reps||""}" oninput="updateSet(${exIdx},${si},'reps',this.value,'b')"><div class="inp-label">REPS</div></div>`}
+          else{h+=`<div style="flex:1;min-width:0"><input class="inp ${bD.weight?"filled":""}" type="number" inputmode="decimal" placeholder="—" value="${bD.weight||""}" oninput="updateSet(${exIdx},${si},'weight',this.value,'b')"><div class="inp-label">LBS</div></div><span class="x">×</span><div style="flex:1;min-width:0"><input class="inp ${bD.reps?"filled":""}" type="number" inputmode="numeric" placeholder="—" value="${bD.reps||""}" oninput="updateSet(${exIdx},${si},'reps',this.value,'b')"><div class="inp-label">REPS</div></div>`}
           h+=`</div></div>`
         } else if(ex.bw){
           const f=!!sd.reps;
-          h+=`<div class="set-row"><span class="set-num ${f?"done":""}">${si+1}</span><span class="bw-badge">BW</span><span class="x">×</span><div style="flex:1"><input class="inp ${sd.reps?"filled":""}" type="number" inputmode="numeric" placeholder="—" value="${sd.reps||""}" oninput="updateSet(${exIdx},${si},'reps',this.value)"><div class="inp-label">REPS</div></div></div>`
+          h+=`<div class="set-row"><span class="set-num ${f?"done":""}">${si+1}</span><span class="bw-badge">BW</span><span class="x">×</span><div style="flex:1;min-width:0"><input class="inp ${sd.reps?"filled":""}" type="number" inputmode="numeric" placeholder="—" value="${sd.reps||""}" oninput="updateSet(${exIdx},${si},'reps',this.value)"><div class="inp-label">REPS</div></div></div>`
         } else {
           const f=sd.weight&&sd.reps;const pr=isNewPR(ex.name,sd.weight);
-          h+=`<div class="set-row"><span class="set-num ${f?"done":""}">${si+1}</span><div style="flex:1"><input class="inp ${pr?"pr":sd.weight?"filled":""}" type="number" inputmode="decimal" placeholder="—" value="${sd.weight||""}" oninput="updateSet(${exIdx},${si},'weight',this.value)"><div class="inp-label">${pr?'<span class="pr-label">★ PR</span>':"LBS"}</div></div><span class="x">×</span><div style="flex:1"><input class="inp ${sd.reps?"filled":""}" type="number" inputmode="numeric" placeholder="—" value="${sd.reps||""}" oninput="updateSet(${exIdx},${si},'reps',this.value)"><div class="inp-label">REPS</div></div></div>`
+          h+=`<div class="set-row"><span class="set-num ${f?"done":""}">${si+1}</span><div style="flex:1;min-width:0"><input class="inp ${pr?"pr":sd.weight?"filled":""}" type="number" inputmode="decimal" placeholder="—" value="${sd.weight||""}" oninput="updateSet(${exIdx},${si},'weight',this.value)"><div class="inp-label">${pr?'<span class="pr-label">★ PR</span>':"LBS"}</div></div><span class="x">×</span><div style="flex:1;min-width:0"><input class="inp ${sd.reps?"filled":""}" type="number" inputmode="numeric" placeholder="—" value="${sd.reps||""}" oninput="updateSet(${exIdx},${si},'reps',this.value)"><div class="inp-label">REPS</div></div></div>`
         }
       }
       h+=`<div class="rest-wrap"><button class="rest-btn" onclick="startTimerByIdx(${exIdx})">⏱ Rest ${ex.rest}</button></div></div>`
     }
     h+=`</div>`
   });
+
+  h+=renderWC("cooldown",COOLDOWNS[state.day]);
 
   const notes=log?.notes||"";
   h+=`<div class="notes-box"><label>SESSION NOTES (OPTIONAL)</label><textarea placeholder="How did it feel? Anything to flag for your coach..." onblur="updateNotes(this.value)">${notes}</textarea></div>`;
@@ -422,7 +537,7 @@ function toggleGuide(id){state.guides[id]=!state.guides[id];render()}
 
 // Init
 state.day=getAutoDay();state.date=getMostRecent(state.day);
-load();render();
+load();loadTimer();render();
 
 </script>
 </body>
